@@ -96,8 +96,8 @@ class Signal {
      */
     public function verify(string $code): bool
     {
-
-        $this->command->addArg('verify' . $code);
+        $this->command->addArg('-u', $this->username);
+        $this->command->addArg('verify', $code);
 
         return $this->command->execute();
     }
@@ -111,6 +111,7 @@ class Signal {
      */
     public function send(array $recipients, string $message, string $groupId = null): bool
     {
+        $this->command->addArg('-u', $this->username);        
         $this->command->addArg('send', $recipients);
 
         $this->command->addArg('-m', $message);
